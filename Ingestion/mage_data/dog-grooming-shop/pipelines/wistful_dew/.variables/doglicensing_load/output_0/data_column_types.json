@@ -1,0 +1,1 @@
+{"AnimalName": "str", "AnimalGender": "str", "AnimalBirthYear": "int", "BreedName": "str", "ZipCode": "float64", "LicenseIssuedDate": "datetime64[ns]", "LicenseExpiredDate": "datetime64[ns]", "Extract Year": "int64"}

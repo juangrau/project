@@ -3,6 +3,7 @@ if 'data_loader' not in globals():
     from mage_ai.data_preparation.decorators import data_loader
 if 'test' not in globals():
     from mage_ai.data_preparation.decorators import test
+import pandas as pd
 
 
 @data_loader
@@ -16,9 +17,9 @@ def load_data_from_file(*args, **kwargs):
 
     Docs: https://docs.mage.ai/design/data-loading#fileio
     """
-    filepath = 'path/to/your/file.csv'
+    filepath = 'https://github.com/juangrau/project/blob/master/datafiles/NYC_Dog_Licensing_Dataset_20240411.csv'
 
-    return FileIO().load(filepath)
+    return pd.read_csv(filepath, sep=",")
 
 
 @test
