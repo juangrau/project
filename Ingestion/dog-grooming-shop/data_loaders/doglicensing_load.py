@@ -18,7 +18,7 @@ def load_data_from_api(*args, **kwargs):
     """
     
     
-    url = 'https://raw.githubusercontent.com/juangrau/project/master/datafiles/NYC_Dog_Licensing_Dataset_20240411.csv'
+    url = 'https://github.com/juangrau/project/raw/master/EDA/NYC_Dog_Licensing_Dataset_20240411.csv'
     response = requests.get(url)
 
     # As previously identified on the EDA these are the columns that have date values
@@ -30,11 +30,13 @@ def load_data_from_api(*args, **kwargs):
         'AnimalGender': str, 
         'AnimalBirthYear': int, 
         'BreedName': str, 
-        'ZipCode': str,
+        'ZipCode': int,
         'Extract Year': int 
     }
 
-    return pd.read_csv(io.StringIO(response.text), sep=',', parse_dates=parse_dates, dtype=dog_licensing_dtypes, na_filter=False)
+    df = pd.read_csv(io.StringIO(response.text), sep=',', parse_dates=parse_dates, dtype=dog_licensing_dtypes)
+
+    return df
 
 
 @test
