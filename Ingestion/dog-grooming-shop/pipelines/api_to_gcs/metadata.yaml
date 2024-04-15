@@ -19,7 +19,7 @@ blocks:
   color: null
   configuration: {}
   downstream_blocks:
-  - upload_to_gcs
+  - upload_licensing_ds_to_gcs
   executor_config: null
   executor_type: local_python
   has_callback: false
@@ -40,14 +40,63 @@ blocks:
   executor_type: local_python
   has_callback: false
   language: python
-  name: upload_to_gcs
+  name: upload_licensing_ds_to_gcs
   retry_config: null
   status: executed
   timeout: null
   type: data_exporter
   upstream_blocks:
   - remove_mixed_breeds
-  uuid: upload_to_gcs
+  uuid: upload_licensing_ds_to_gcs
+- all_upstream_blocks_executed: true
+  color: null
+  configuration: {}
+  downstream_blocks:
+  - remove_nan_values
+  executor_config: null
+  executor_type: local_python
+  has_callback: false
+  language: python
+  name: akc_dog_breeds
+  retry_config: null
+  status: executed
+  timeout: null
+  type: data_loader
+  upstream_blocks: []
+  uuid: akc_dog_breeds
+- all_upstream_blocks_executed: true
+  color: null
+  configuration: {}
+  downstream_blocks:
+  - upload_dog_breeds_to_gcs
+  executor_config: null
+  executor_type: local_python
+  has_callback: false
+  language: python
+  name: remove_nan_values
+  retry_config: null
+  status: executed
+  timeout: null
+  type: transformer
+  upstream_blocks:
+  - akc_dog_breeds
+  uuid: remove_nan_values
+- all_upstream_blocks_executed: true
+  color: null
+  configuration: {}
+  downstream_blocks: []
+  executor_config: null
+  executor_type: local_python
+  has_callback: false
+  language: python
+  name: upload_dog_breeds_to_gcs
+  retry_config: null
+  status: executed
+  timeout: null
+  type: data_exporter
+  upstream_blocks:
+  - remove_nan_values
+  uuid: upload_dog_breeds_to_gcs
 cache_block_output_in_memory: false
 callbacks: []
 concurrency_config: {}
@@ -69,7 +118,7 @@ settings:
 spark_config: {}
 tags: []
 type: python
-updated_at: '2024-04-15 00:39:41'
+updated_at: '2024-04-15 20:09:23'
 uuid: api_to_gcs
 variables_dir: /home/src/mage_data/dog-grooming-shop
 widgets: []
